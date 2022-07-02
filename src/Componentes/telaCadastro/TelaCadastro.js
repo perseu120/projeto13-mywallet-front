@@ -13,7 +13,7 @@ function TelaCadastro() {
 
   function cadastro() {
 
-    if(senha !== confirmaSenha){
+    if (senha !== confirmaSenha) {
       alert("Senhas não confere");
       return;
     }
@@ -23,9 +23,9 @@ function TelaCadastro() {
       email,
       senha
     };
-    
 
-    const promise = axios.post("http://localhost:5000/sign-up",body);
+
+    const promise = axios.post("http://localhost:5000/sign-up", body);
 
     promise.then((response) => {
       console.log(response.data);
@@ -41,6 +41,8 @@ function TelaCadastro() {
   return (
     <Container>
 
+      <h1>MyWallet</h1>
+      
       <Form
         onSubmit={(e) => {
           e.preventDefault();
@@ -75,7 +77,7 @@ function TelaCadastro() {
       </Form>
 
       <Link to="/">
-        á tem uma conta? faça login!
+        Já tem uma conta? Entre agora!
       </Link>
     </Container>
   );
@@ -89,21 +91,28 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: #0E0E13;
+  background: #8C11BE;
   height: 100vh;
 
-  a{
-    width: 232px;
-    height: 17px;
-    font-family: 'Lexend Deca';
+  h1{
+    font-family: 'Saira Stencil One';
     font-style: normal;
     font-weight: 400;
-    font-size: 13.976px;
-    line-height: 17px;
-    text-align: center;
+    font-size: 32px;
+    line-height: 50px;
+    color: #FFFFFF;
+    margin-bottom: 24px;
+  }
+
+  a{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
     text-decoration-line: underline;
-    
-    color: #52B6FF;
+
+    color: #FFFFFF;
   }
 
 `
@@ -133,10 +142,19 @@ const Form = styled.form`
     gap: 10px;
     width: 299px;
     height: 52px;
-    background: #FF4791;
-    border-radius: 8px;
+    background: #A328D6;
+    border-radius: 5px;
     margin-top: 8px;
     margin-bottom: 24px;
+    border: 0px;
+
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+
+    color: #FFFFFF;
 
   }
 
