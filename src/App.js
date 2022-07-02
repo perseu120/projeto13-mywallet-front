@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import TelaLogin from './Componentes/telaLogin/TelaLogin';
+import TelaCadastro from './Componentes/telaCadastro/TelaCadastro.js'
+import UserContext from './Componentes/contexts/UseContext';
 
 function App() {
+
+  const [token, setToken] = useState(null);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <UserContext.Provider value={{ token, setToken }}>
+
+      <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<TelaLogin />} />
+            <Route path='/sign-up' element={<TelaCadastro />} />
+          </Routes>
+        </BrowserRouter>
+      </UserContext.Provider>
+        
     </div>
   );
 }
