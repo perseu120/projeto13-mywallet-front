@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TelaLogin from './Componentes/telaLogin/TelaLogin';
 import TelaCadastro from './Componentes/telaCadastro/TelaCadastro.js'
 import UserContext from './Componentes/contexts/UseContext';
+import TelaInicial from './Componentes/telaInicial/TelaInicial';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<TelaLogin />} />
             <Route path='/sign-up' element={<TelaCadastro />} />
+            <Route path='/home' element={ <TelaInicial />} />
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>

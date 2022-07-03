@@ -9,7 +9,7 @@ function TelaLogin() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-  const { token, setToken, dadosUsuario, setDadosUsuario} = useContext(UserContext); 
+  const { token, setToken} = useContext(UserContext); 
 
   const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ function TelaLogin() {
 
     promise.then((response) => {
       setToken(response.data.token);
-      
+      navigate('/home');
     })
     promise.catch((err) => { alert("erro ao realizar login"); })
 
@@ -82,7 +82,6 @@ const Container = styled.div`
     font-size: 14px;
     line-height: 16px;
     text-decoration-line: underline;
-
     color: #FFFFFF;
 
   }
