@@ -4,6 +4,7 @@ import TelaLogin from './Componentes/telaLogin/TelaLogin';
 import TelaCadastro from './Componentes/telaCadastro/TelaCadastro.js'
 import UserContext from './Componentes/contexts/UseContext';
 import TelaInicial from './Componentes/telaInicial/TelaInicial';
+import TelaMovimentacao from './Componentes/telaMovimentacao/TelaMovimentacao';
 
 function App() {
 
@@ -19,6 +20,8 @@ function App() {
             <Route path="/" element={<TelaLogin />} />
             <Route path='/sign-up' element={<TelaCadastro />} />
             <Route path='/home' element={ <TelaInicial />} />
+            <Route path='/movimentacao/entrada' element={<TelaMovimentacao type={"Entrada"} />} />
+            <Route path='/movimentacao/saida' element={<TelaMovimentacao type={"Saida"} />} />
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>
