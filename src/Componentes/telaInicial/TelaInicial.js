@@ -4,27 +4,34 @@ import UserContext from "../contexts/UseContext";
 import { useContext, useState } from "react";
 import Header from "../header/Header.js";
 import Button from "../button/Button";
+import { Link } from "react-router-dom";
 
 export default function TelaInicial() {
-    const { token, setToken } = useContext(UserContext);
-
+    const { token, setToken, dadosUsuario } = useContext(UserContext);
+    console.log(dadosUsuario);
     return (
 
         <Container>
             <Header>
-                <h2>Ola, Fulano</h2>
-                <ion-icon name="exit-outline"></ion-icon>
+                <h2>Ola, {dadosUsuario.nome}</h2>
+
+                <Link to={"/"}>
+                    <ion-icon name="exit-outline"></ion-icon>
+                </Link>
+
+
             </Header>
             <Main>
-                <p>Não a registro de entra ou saida ainda</p>
+                {dadosUsuario.movimentacao.length === 0 ? <p>Não a registro de entra ou saida ainda</p> : <p>dados encontrados</p>}
+
             </Main>
             <Footer>
                 <Button>
                     <ion-icon name="add-circle-outline"></ion-icon>
-                    <p>Nova entrada</p>
+                    <p>Nova Entrada</p>
                 </Button>
                 <Button>
-                    <ion-icon name="add-circle-outline"></ion-icon>
+                    <ion-icon name="remove-circle-outline"></ion-icon>
                     <p>Nova Saida</p>
                 </Button>
             </Footer>

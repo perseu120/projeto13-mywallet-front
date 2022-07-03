@@ -18,5 +18,11 @@ const ContainerBotao = styled.div`
     height: 114px;
     background: #A328D6;
     border-radius: 5px;
+    color: white;
+
+    ion-icon {
+        color: white;
+        font-size: 34px;
+    }
 
 `

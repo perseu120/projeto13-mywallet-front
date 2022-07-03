@@ -8,10 +8,11 @@ import TelaInicial from './Componentes/telaInicial/TelaInicial';
 function App() {
 
   const [token, setToken] = useState(null);
+  const [dadosUsuario, setDadosUsuario] = useState(null);
 
   return (
     <div className="App">
-      <UserContext.Provider value={{ token, setToken }}>
+      <UserContext.Provider value={{ token, setToken, dadosUsuario, setDadosUsuario }}>
 
       <BrowserRouter>
           <Routes>

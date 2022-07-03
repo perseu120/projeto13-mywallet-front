@@ -6,10 +6,10 @@ import UserContext from "../contexts/UseContext";
 
 function TelaLogin() {
 
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [email, setEmail] = useState("perseu@exemplo.com");
+  const [senha, setSenha] = useState("12345");
 
-  const { token, setToken} = useContext(UserContext); 
+  const { setToken, setDadosUsuario} = useContext(UserContext); 
 
   const navigate = useNavigate();
 
@@ -23,6 +23,7 @@ function TelaLogin() {
 
     promise.then((response) => {
       setToken(response.data.token);
+      setDadosUsuario(response.data);
       navigate('/home');
     })
     promise.catch((err) => { alert("erro ao realizar login"); })

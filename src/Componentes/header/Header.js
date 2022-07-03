@@ -17,6 +17,11 @@ const ContainerTopo = styled.header`
     top: 0;
     left: 0;
     right: 0;
+    color: white;
    
+    ion-icon {
+        color: white;
+        font-size: 34px;
+    }
     
 `
