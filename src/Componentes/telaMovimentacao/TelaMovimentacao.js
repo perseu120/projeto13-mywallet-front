@@ -9,6 +9,7 @@ function TelaMovimentacao({type}) {
 
     const [valor, setValor] = useState("");
     const [descricao, setDescricao] = useState("");
+    const { token } = useContext(UserContext);
 
     const navigate = useNavigate();
 
@@ -18,16 +19,19 @@ function TelaMovimentacao({type}) {
             valor:parseFloat(Math.abs(valor).toFixed(2)),
             type
         }
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
 
-        console.log(body);
+        const promise = axios.post("http://localhost:5000/movimentacao", body, config);
 
-        // const promise = axios.post("http://localhost:5000/movimentacao", body);
-
-        // promise.then((response) => {
+        promise.then((response) => {
             
-        //     navigate('/home');
-        // })
-        // promise.catch((err) => { alert("erro ao realizar login"); })
+            navigate('/home');
+        })
+        promise.catch((err) => { alert("erro ao cadastra movimentação"); })
 
     }
 

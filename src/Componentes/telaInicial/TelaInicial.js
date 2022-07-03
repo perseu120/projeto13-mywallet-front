@@ -5,11 +5,9 @@ import { useContext, useState } from "react";
 import Header from "../header/Header.js";
 import Button from "../button/Button";
 import { Link } from "react-router-dom";
-import TelaMovimentacao from "../telaMovimentacao/TelaMovimentacao";
 
 export default function TelaInicial() {
     const { token, setToken, dadosUsuario } = useContext(UserContext);
-    console.log(dadosUsuario);
     return (
 
         <Container>
@@ -24,7 +22,7 @@ export default function TelaInicial() {
             </Header>
             <Main alinhamento={ dadosUsuario.movimentacao.length === 0? "center" : "flex-start" }  >
                 {dadosUsuario.movimentacao.length === 0 ? <h4>Não a registro de entra ou saida</h4> 
-                : dadosUsuario.movimentacao.map((items)=>(<p>{items.descricao} {items.valor}</p>))} {/* criar styled e colocar cor a depender do tipo da mivimentação entrada ou saida*/}
+                : dadosUsuario.movimentacao.map((items, index)=>(<p key={index}> {items.data} {items.descricao} {items.valor}</p>))} {/* criar styled e colocar cor a depender do tipo da mivimentação entrada ou saida*/}
             </Main>
             <Footer>
                 <Link to={'/movimentacao/entrada'}>
@@ -60,8 +58,9 @@ const Main = styled.main`
     background: #FFFFFF;
     border-radius: 5px;
     display: flex;
-    justify-content: center;
-    align-items:${props => props.alinhamento};
+    justify-content: ${props => props.alinhamento};
+    align-items:center;
+    flex-direction: column;
 
     h4{
         width: 180px;
@@ -74,6 +73,7 @@ const Main = styled.main`
         text-align: center;
         color: #868686;
     }
+
     
 `
 const Footer = styled.footer`
