@@ -6,8 +6,8 @@ import UserContext from "../contexts/UseContext";
 
 function TelaLogin() {
 
-  const [email, setEmail] = useState("perseu@exemplo.com");
-  const [senha, setSenha] = useState("12345");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
 
   const { setToken, setDadosUsuario} = useContext(UserContext); 
 
