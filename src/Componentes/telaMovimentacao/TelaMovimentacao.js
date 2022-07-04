@@ -12,18 +12,20 @@ function TelaMovimentacao({type}) {
     const { token } = useContext(UserContext);
 
     const navigate = useNavigate();
+    
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
 
     function movimentacao() {
         const body ={ 
             descricao,
-            valor:parseFloat(Math.abs(valor).toFixed(2)),
+            valor:parseFloat(Math.abs(valor)),
             type
         }
-        const config = {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
+        
 
         const promise = axios.post("http://localhost:5000/movimentacao", body, config);
 

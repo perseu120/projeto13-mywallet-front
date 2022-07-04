@@ -1,13 +1,37 @@
 import axios from "axios";
 import styled from "styled-components";
 import UserContext from "../contexts/UseContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Header from "../header/Header.js";
 import Button from "../button/Button";
 import { Link } from "react-router-dom";
 
+import Paragrafo from "../paragrafo/Paragrafo";
+
 export default function TelaInicial() {
-    const { token, setToken, dadosUsuario } = useContext(UserContext);
+    const { token, dadosUsuario } = useContext(UserContext); // fazer um get que retorna todas as transaçoes de um usuario usando o tokken
+    const [saldo, setSaldo] = useState(0);
+    const [transacao, setTransacao] = useState([]);
+    const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+    }
+
+    useEffect(() => {
+
+        const promise = axios.get("http://localhost:5000/movimentacao", config);
+    
+        promise.then((response) => {
+            setTransacao(response.data); 
+        })
+    
+        promise.catch((err) => {
+          console.log(err);
+        })
+    
+      }, [])
+   
     return (
 
         <Container>
@@ -20,9 +44,14 @@ export default function TelaInicial() {
 
                 
             </Header>
-            <Main alinhamento={ dadosUsuario.movimentacao.length === 0? "center" : "flex-start" }  >
-                {dadosUsuario.movimentacao.length === 0 ? <h4>Não a registro de entra ou saida</h4> 
-                : dadosUsuario.movimentacao.map((items, index)=>(<p key={index}> {items.data} {items.descricao} {items.valor}</p>))} {/* criar styled e colocar cor a depender do tipo da mivimentação entrada ou saida*/}
+            <Main alinhamento={ transacao.length === 0? "center" : "flex-start" }  >
+                {transacao.length === 0 ? <h4>Não a registro de entra ou saida</h4> 
+                : transacao.map((items, index)=>(<Paragrafo key={index} data= {items.data} descricao ={items.descricao} valor={items.valor} cor={items.type === "Entrada"?"#03AC00":"#C70000"} />))} {/* criar styled e colocar cor a depender do tipo da mivimentação entrada ou saida*/}
+
+                <DivSaldo>
+                    <Saldo>Saldo</Saldo>
+                    <ValorSaldo>{saldo}</ValorSaldo>
+                </DivSaldo>
             </Main>
             <Footer>
                 <Link to={'/movimentacao/entrada'}>
@@ -42,6 +71,34 @@ export default function TelaInicial() {
         </Container>
     );
 }
+
+const DivSaldo = styled.div`
+    display: flex;
+    justify-content: space-between;
+
+    position: absolute;
+    left: 35px;
+    right: 35px;
+    bottom: 230px;
+`
+const Saldo = styled.p`
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 20px;
+    color: #000000;
+`
+const ValorSaldo = styled.p`
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 20px;
+    text-align: right;
+
+    color: #03AC00;
+`
 
 const Container = styled.div`
     
