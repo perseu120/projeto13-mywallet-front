@@ -27,7 +27,7 @@ function TelaMovimentacao({type}) {
         }
         
 
-        const promise = axios.post("http://localhost:5000/movimentacao", body, config);
+        const promise = axios.post("https://my-wallet1.herokuapp.com/movimentacao", body, config);
 
         promise.then((response) => {
             

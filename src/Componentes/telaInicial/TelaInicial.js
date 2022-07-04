@@ -21,7 +21,7 @@ export default function TelaInicial() {
 
     useEffect(() => {
 
-        const promise = axios.get("http://localhost:5000/movimentacao", config);
+        const promise = axios.get("https://my-wallet1.herokuapp.com/movimentacao", config);
     
         promise.then((response) => {
             let valor = 0;

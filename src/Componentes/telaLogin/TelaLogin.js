@@ -19,7 +19,7 @@ function TelaLogin() {
       senha
     }
 
-    const promise = axios.post("http://localhost:5000/login", body);
+    const promise = axios.post("https://my-wallet1.herokuapp.com/login", body);
 
     promise.then((response) => {
       setToken(response.data.token);
