@@ -22,7 +22,7 @@ function TelaMovimentacao({type}) {
     function movimentacao() {
         const body ={ 
             descricao,
-            valor:parseFloat(Math.abs(valor)),
+            valor:Math.abs(parseFloat(valor.replace(',', '.'))),
             type
         }
         
