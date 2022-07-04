@@ -60,7 +60,7 @@ export default function TelaInicial() {
 
                 <DivSaldo>
                     <Saldo>Saldo</Saldo>
-                    <ValorSaldo>{saldo}</ValorSaldo>
+                    <ValorSaldo>{saldo.toFixed(2)}</ValorSaldo>
                 </DivSaldo>
             </Main>
             <Footer>
