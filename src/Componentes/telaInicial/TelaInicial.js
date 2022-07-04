@@ -12,6 +12,7 @@ export default function TelaInicial() {
     const { token, dadosUsuario } = useContext(UserContext); // fazer um get que retorna todas as transaçoes de um usuario usando o tokken
     const [saldo, setSaldo] = useState(0);
     const [transacao, setTransacao] = useState([]);
+
     const config = {
         headers: {
           Authorization: `Bearer ${token}`
@@ -23,7 +24,16 @@ export default function TelaInicial() {
         const promise = axios.get("http://localhost:5000/movimentacao", config);
     
         promise.then((response) => {
-            setTransacao(response.data); 
+            let valor = 0;
+            setTransacao(response.data);
+            response.data.forEach(element => {
+                if(element.type === "Entrada"){
+                    valor += element.valor;
+                }else{
+                    valor -= element.valor;
+                }
+            });
+            setSaldo(valor);
         })
     
         promise.catch((err) => {
@@ -31,7 +41,7 @@ export default function TelaInicial() {
         })
     
       }, [])
-   
+
     return (
 
         <Container>
