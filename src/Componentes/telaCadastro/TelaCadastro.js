@@ -25,7 +25,7 @@ function TelaCadastro() {
     };
 
 
-    const promise = axios.post("http://localhost:5000/sign-up", body);
+    const promise = axios.post("https://my-wallet1.herokuapp.com/sign-up", body);
 
     promise.then((response) => {
       console.log(response.data);
